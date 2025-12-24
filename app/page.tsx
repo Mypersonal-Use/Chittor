@@ -2,8 +2,7 @@ import Hero from '@/components/Hero'
 import ExecutiveVision from '@/components/ExecutiveVision'
 import RuralCrisis from '@/components/RuralCrisis'
 import Blueprint from '@/components/Blueprint'
-import Pillars from '@/components/Pillars'
-import ImpactMetrics from '@/components/ImpactMetrics'
+
 import LivingLab from '@/components/LivingLab'
 import Partnerships from '@/components/Partnerships'
 import Roadmap from '@/components/Roadmap'
@@ -17,8 +16,7 @@ export default function Home() {
       <ExecutiveVision />
       <RuralCrisis />
       <Blueprint />
-      <Pillars />
-      <ImpactMetrics />
+
       <LivingLab />
       <Partnerships />
       <Roadmap />

@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --color-primary-green: #00CC88;
-  --color-primary-blue: #0066FF;
-  --color-slate-dark: #1e293b;
-  --color-slate-gray: #64748b;
+  --color-primary-green: #1B4D3E;
+  --color-primary-blue: #4E9F3D;
+  --color-slate-dark: #191A19;
+  --color-slate-gray: #4F5D4E;
 }
 
 * {
@@ -46,7 +46,7 @@ body {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #00CC88 0%, #0066FF 100%);
+  background: linear-gradient(135deg, #1B4D3E 0%, #4E9F3D 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

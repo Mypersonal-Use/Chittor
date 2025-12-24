@@ -14,32 +14,32 @@ export default function RuralCrisis() {
     {
       icon: Droplet,
       title: 'Water Stress',
-      description: 'Depleting groundwater levels, water scarcity affecting agriculture',
-      color: 'from-blue-500 to-cyan-500',
+      description: 'Depleting groundwater levels.',
+      color: 'from-blue-600 to-cyan-700',
     },
     {
       icon: TrendingDown,
       title: 'Soil Exhaustion',
-      description: 'Degraded soil health, declining fertility, unsustainable farming practices',
-      color: 'from-amber-600 to-orange-600',
+      description: 'Degraded soil health.',
+      color: 'from-amber-700 to-orange-800',
     },
     {
       icon: Users,
-      title: 'Rural Migration',
-      description: 'Youth and families moving to cities, leaving villages behind',
-      color: 'from-red-500 to-pink-500',
+      title: 'Migration',
+      description: 'Youth leaving villages.',
+      color: 'from-red-700 to-pink-800',
     },
     {
       icon: BookOpen,
-      title: 'Disrupted Education',
-      description: 'Limited access to quality education, lack of digital infrastructure',
-      color: 'from-purple-500 to-indigo-500',
+      title: 'Education Gap',
+      description: 'Limited access to quality learning.',
+      color: 'from-purple-700 to-indigo-800',
     },
     {
       icon: Cloud,
-      title: 'Climate Pressure',
-      description: 'Extreme weather events, unpredictable monsoons, crop failures',
-      color: 'from-gray-600 to-slate-600',
+      title: 'Climate Risk',
+      description: 'Unpredictable weather patterns.',
+      color: 'from-gray-700 to-slate-800',
     },
   ]
 
@@ -53,11 +53,10 @@ export default function RuralCrisis() {
           className="max-w-4xl mx-auto text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            The Rural Crisis <span className="text-red-600">— Why Now?</span>
+            The Crisis <span className="text-red-700">— Why Now?</span>
           </h2>
           <p className="text-lg text-slate-gray">
-            Rural India faces unprecedented challenges. But within every crisis lies opportunity.
-            Project Chittoor is our response to these urgent needs.
+            Urgent challenges requiring immediate action.
           </p>
         </motion.div>
 
@@ -71,7 +70,7 @@ export default function RuralCrisis() {
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -10, scale: 1.05 }}
-                className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+                className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border-l-4 border-primary-green"
               >
                 <motion.div
                   whileHover={{ rotate: 360 }}
@@ -96,13 +95,12 @@ export default function RuralCrisis() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-16 text-center"
         >
-          <div className="glass-dark p-8 rounded-2xl max-w-3xl mx-auto">
+          <div className="glass-dark p-8 rounded-2xl max-w-3xl mx-auto bg-slate-dark/90">
             <h3 className="text-2xl font-bold text-white mb-4">
-              Urgency + Hope = Action
+              Turning Crisis into Opportunity
             </h3>
-            <p className="text-lg text-gray-200">
-              The challenges are real, but so is our commitment. Project Chittoor transforms
-              these crises into opportunities for sustainable, scalable rural transformation.
+            <p className="text-lg text-gray-300">
+              Project Chittoor transforms these challenges into sustainable growth.
             </p>
           </div>
         </motion.div>

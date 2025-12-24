@@ -4,6 +4,14 @@ import './globals.css'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
+import { Poppins } from 'next/font/google'
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-poppins',
+})
+
 export const metadata: Metadata = {
   title: 'Project Chittoor | Rooted in Sustainability, Where the Farmers are the Future',
   description: 'A rural renaissance initiative by Atria Group. Integrating Sustainable Agriculture, Clean Renewable Energy, Transformative Education, and Agro-Wellness Tourism.',
@@ -26,7 +34,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body>
+      <body className={poppins.className}>
         <Navigation />
         <main>{children}</main>
         <Footer />

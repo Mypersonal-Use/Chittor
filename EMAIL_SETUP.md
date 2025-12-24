@@ -6,7 +6,7 @@ The contact form is now set up with an API route at `/api/contact/route.ts`. Cur
 
 ## Email Destination
 
-Messages will be sent to: **projectchittoor@atria.edu**
+Messages will be sent to: **pratham.projectchittoor@atriauniversity.edu.in**
 
 ## Setup Options
 
@@ -24,7 +24,7 @@ Resend is a modern email API service with a generous free tier.
    Create a `.env.local` file in your project root:
    ```env
    RESEND_API_KEY=re_xxxxxxxxxxxxx
-   CONTACT_EMAIL=projectchittoor@atria.edu
+   CONTACT_EMAIL=pratham.projectchittoor@atriauniversity.edu.in
    ```
 5. **Update the API route** (`app/api/contact/route.ts`):
    Uncomment and configure the Resend code in the file.
@@ -40,7 +40,7 @@ Resend is a modern email API service with a generous free tier.
 4. **Add to `.env.local`**:
    ```env
    SENDGRID_API_KEY=SG.xxxxxxxxxxxxx
-   CONTACT_EMAIL=projectchittoor@atria.edu
+   CONTACT_EMAIL=pratham.projectchittoor@atriauniversity.edu.in
    ```
 5. **Update the API route** to use SendGrid
 
@@ -59,7 +59,7 @@ Use your own SMTP server (Gmail, Outlook, etc.)
    SMTP_PORT=587
    SMTP_USER=your-email@gmail.com
    SMTP_PASS=your-app-password
-   CONTACT_EMAIL=projectchittoor@atria.edu
+   CONTACT_EMAIL=pratham.projectchittoor@atriauniversity.edu.in
    ```
 3. **Update the API route** to use Nodemailer
 
@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
     // Send email
     await resend.emails.send({
       from: 'Project Chittoor <contact@yourdomain.com>',
-      to: process.env.CONTACT_EMAIL || 'projectchittoor@atria.edu',
+      to: process.env.CONTACT_EMAIL || 'pratham.projectchittoor@atriauniversity.edu.in',
       replyTo: email,
       subject: `New Partnership Inquiry from ${name}`,
       html: `

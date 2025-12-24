@@ -9,20 +9,34 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const { scrollY } = useScroll()
+
+  // Dynamic background opacity based on scroll
   const navBackground = useTransform(
     scrollY,
-    [0, 100],
-    ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.95)']
+    [0, 50],
+    ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.9)']
+  )
+
+  const navBackdropBlur = useTransform(
+    scrollY,
+    [0, 50],
+    ['blur(0px)', 'blur(12px)']
+  )
+
+  const navShadow = useTransform(
+    scrollY,
+    [0, 50],
+    ['none', '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)']
   )
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-      
+      setIsScrolled(window.scrollY > 20)
+
       // Determine active section
-      const sections = ['vision', 'crisis', 'blueprint', 'impact', 'partners', 'contact']
+      const sections = ['vision', 'crisis', 'blueprint', 'partners', 'contact']
       const scrollPosition = window.scrollY + 100
-      
+
       for (const section of sections) {
         const element = document.getElementById(section)
         if (element) {
@@ -35,7 +49,7 @@ export default function Navigation() {
         }
       }
     }
-    
+
     window.addEventListener('scroll', handleScroll)
     handleScroll() // Check on mount
     return () => window.removeEventListener('scroll', handleScroll)
@@ -45,7 +59,6 @@ export default function Navigation() {
     { label: 'Vision', href: '#vision', id: 'vision' },
     { label: 'Crisis', href: '#crisis', id: 'crisis' },
     { label: 'Blueprint', href: '#blueprint', id: 'blueprint' },
-    { label: 'Impact', href: '#impact', id: 'impact' },
     { label: 'Partners', href: '#partners', id: 'partners' },
     { label: 'Contact', href: '#contact', id: 'contact' },
   ]
@@ -54,98 +67,69 @@ export default function Navigation() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      style={{ backgroundColor: navBackground }}
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        backgroundColor: navBackground,
+        backdropFilter: navBackdropBlur,
+        boxShadow: navShadow
+      }}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-20 flex items-center"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.a
             href="#"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 group"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex items-center gap-3 group"
           >
-            <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
-              className="w-10 h-10 bg-gradient-to-br from-primary-green to-primary-blue rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow"
-            >
-              <Leaf className="text-white" size={20} />
-            </motion.div>
-            <span className="text-2xl font-bold gradient-text hidden sm:block">
-              Project Chittoor
-            </span>
+            <div className="relative w-48 h-16">
+              <img
+                src="/images/project-chittoor-logo.svg"
+                alt="Project Chittoor logo"
+                className="w-full h-full object-contain object-left"
+              />
+            </div>
           </motion.a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-2">
-            <div className="relative bg-white/80 backdrop-blur-xl rounded-full px-2 py-2 shadow-lg border border-gray-100/50">
-              <div className="flex items-center gap-1">
-                {navItems.map((item, index) => {
-                  const isActive = activeSection === item.id
-                  return (
-                    <motion.a
-                      key={item.href}
-                      href={item.href}
-                      className="relative px-4 py-2 rounded-full font-medium text-sm transition-all duration-300"
-                      style={{
-                        color: isActive ? '#ffffff' : '#1e293b',
-                      }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {isActive && (
-                        <motion.div
-                          layoutId="activeNav"
-                          className="absolute inset-0 bg-gradient-to-r from-primary-green to-primary-blue rounded-full -z-10"
-                          initial={false}
-                          transition={{
-                            type: 'spring',
-                            stiffness: 500,
-                            damping: 30,
-                          }}
-                        />
-                      )}
-                      <span className="relative z-10">{item.label}</span>
-                    </motion.a>
-                  )
-                })}
-              </div>
+          <div className="hidden md:flex items-center gap-8">
+            <div className="flex items-center gap-1">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="relative px-4 py-2 group"
+                  >
+                    <span className={`relative z-10 text-base font-medium transition-colors duration-300 ${isActive ? 'text-primary-green' : 'text-slate-gray group-hover:text-slate-dark'}`}>{item.label}</span>
+                    <span
+                      className={`absolute left-0 right-0 bottom-0 h-[2px] rounded-full transition-all duration-300 ${isActive ? 'bg-primary-green scale-x-100' : 'bg-slate-200 scale-x-0 group-hover:scale-x-100'}`}
+                      style={{ transformOrigin: 'left' }}
+                    />
+                  </a>
+                );
+              })}
             </div>
+
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-2.5 bg-slate-dark text-white text-sm font-semibold rounded-full shadow-lg hover:shadow-xl hover:bg-primary-green transition-all duration-300"
+            >
+              Join Us
+            </motion.a>
           </div>
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden relative z-50 p-2 rounded-lg bg-white/80 backdrop-blur-xl shadow-lg border border-gray-100/50"
+            className="md:hidden p-2 text-slate-dark"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            <AnimatePresence mode="wait">
-              {isMobileMenuOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X className="text-slate-dark" size={24} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu className="text-slate-dark" size={24} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
         </div>
       </div>
@@ -159,41 +143,29 @@ export default function Navigation() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden top-20"
             />
             <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-20 right-0 bottom-0 w-80 bg-white/95 backdrop-blur-xl shadow-2xl z-40 md:hidden border-l border-gray-100"
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              className="fixed top-20 left-0 right-0 bg-white border-b border-slate-100 shadow-xl z-40 md:hidden p-4"
             >
-              <div className="flex flex-col p-6 space-y-2">
-                {navItems.map((item, index) => {
+              <div className="flex flex-col space-y-2">
+                {navItems.map((item) => {
                   const isActive = activeSection === item.id
                   return (
-                    <motion.a
+                    <a
                       key={item.href}
                       href={item.href}
-                      initial={{ x: 50, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: index * 0.1 }}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`relative px-6 py-4 rounded-xl font-medium transition-all duration-300 ${
-                        isActive
-                          ? 'bg-gradient-to-r from-primary-green to-primary-blue text-white shadow-lg'
-                          : 'text-slate-dark hover:bg-gray-50'
-                      }`}
+                      className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${isActive
+                          ? 'bg-primary-green/10 text-primary-green'
+                          : 'text-slate-gray hover:bg-slate-50'
+                        }`}
                     >
-                      <span>{item.label}</span>
-                      {isActive && (
-                        <motion.div
-                          className="absolute right-4 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full"
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                        />
-                      )}
-                    </motion.a>
+                      {item.label}
+                    </a>
                   )
                 })}
               </div>

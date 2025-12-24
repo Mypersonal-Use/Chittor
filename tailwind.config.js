@@ -9,12 +9,12 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          green: '#00CC88',
-          blue: '#0066FF',
+          green: '#1B4D3E', // Deep Forest Green
+          blue: '#4E9F3D',  // Lighter Forest Green (replacing blue)
         },
         slate: {
-          dark: '#1e293b',
-          gray: '#64748b',
+          dark: '#191A19',  // Dark Greenish Black
+          gray: '#4F5D4E',  // Grayish Green
         },
       },
       backgroundImage: {

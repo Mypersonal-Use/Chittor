@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     // 1. Install Resend: npm install resend
     // 2. Add RESEND_API_KEY to .env.local
     // 3. Uncomment the Resend code below
-    
+
     // Uncomment this section after setting up Resend:
     /*
     if (process.env.RESEND_API_KEY) {
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
       
       await resend.emails.send({
         from: 'Project Chittoor <onboarding@resend.dev>', // Update with your verified domain
-        to: process.env.CONTACT_EMAIL || 'projectchittoor@atria.edu',
+        to: process.env.CONTACT_EMAIL || 'pratham.projectchittoor@atriauniversity.edu.in',
         replyTo: email,
         subject: `New Partnership Inquiry from ${name}`,
         html: `
@@ -65,9 +65,9 @@ export async function POST(request: NextRequest) {
 
     // Return success response
     return NextResponse.json(
-      { 
+      {
         message: 'Thank you for your interest! We will get back to you soon.',
-        success: true 
+        success: true
       },
       { status: 200 }
     )

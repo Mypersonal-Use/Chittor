@@ -29,45 +29,27 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-green/10 via-white to-primary-blue/10">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Solar Panel Grid */}
-        <div className="absolute top-20 left-10 w-32 h-32 opacity-20">
-          <div className="grid grid-cols-4 gap-1">
-            {Array.from({ length: 16 }).map((_, i) => (
-              <motion.div
-                key={i}
-                className="bg-primary-blue rounded-sm"
-                initial={{ opacity: 0.3 }}
-                animate={{
-                  opacity: [0.3, 0.6, 0.3],
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: i * 0.1,
-                }}
-                style={{ height: '20px' }}
-              />
-            ))}
-          </div>
-        </div>
+        {/* Forest Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-green/20 to-transparent opacity-60" />
 
-        {/* Floating Particles (Leaves/Solar Rays) */}
+        {/* Floating Particles (Leaves) */}
         {particles.map((particle: Particle) => (
           <motion.div
             key={particle.id}
-            className="absolute w-2 h-2 bg-primary-green rounded-full opacity-30"
+            className="absolute w-3 h-3 bg-primary-blue rounded-full opacity-40"
             style={{
               left: `${particle.x}%`,
               top: `${particle.y}%`,
+              borderRadius: '0 50% 0 50%', // Leaf shape
             }}
             animate={{
-              y: [0, -30, 0],
-              x: [0, Math.sin(particle.id) * 20, 0],
-              opacity: [0.3, 0.6, 0.3],
+              y: [0, 100, 0],
+              x: [0, Math.sin(particle.id) * 50, 0],
+              rotate: [0, 360],
+              opacity: [0.4, 0.8, 0.4],
             }}
             transition={{
-              duration: 4 + particle.delay,
+              duration: 10 + particle.delay,
               repeat: Infinity,
               delay: particle.delay,
             }}
@@ -76,21 +58,34 @@ export default function Hero() {
 
         {/* Tree Silhouettes */}
         <motion.div
-          className="absolute bottom-0 left-0 w-full h-64 opacity-10"
+          className="absolute bottom-0 left-0 w-full h-64 opacity-20"
           initial={{ x: -100 }}
           animate={{ x: 0 }}
           transition={{ duration: 1 }}
         >
           <svg viewBox="0 0 1200 200" className="w-full h-full">
             <path
+              d="M0,200 L0,150 Q100,100 200,150 T400,150 T600,150 T800,150 T1000,150 T1200,150 L1200,200 Z"
+              fill="currentColor"
+              className="text-primary-green"
+            />
+            <path
               d="M100,200 L100,120 Q80,80 100,60 Q120,40 100,20 Q90,0 100,0 L110,0 Q120,20 110,40 Q130,60 110,80 Q90,120 110,200 Z"
               fill="currentColor"
               className="text-primary-green"
+              transform="translate(50, 20) scale(1.5)"
             />
             <path
               d="M300,200 L300,100 Q280,60 300,40 Q320,20 300,0 L310,0 Q320,20 310,40 Q330,60 310,100 Q290,140 310,200 Z"
               fill="currentColor"
               className="text-primary-green"
+              transform="translate(200, 50) scale(1.2)"
+            />
+            <path
+              d="M900,200 L900,100 Q880,60 900,40 Q920,20 900,0 L910,0 Q920,20 910,40 Q930,60 910,100 Q890,140 910,200 Z"
+              fill="currentColor"
+              className="text-primary-green"
+              transform="translate(-100, 30) scale(1.8)"
             />
           </svg>
         </motion.div>
@@ -114,7 +109,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl md:text-2xl text-slate-gray mb-8 font-light"
           >
-            Rooted in Sustainability, Where the Farmers are the Future
+            Farmers are the Future.
           </motion.p>
 
           <motion.p
@@ -123,7 +118,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg text-slate-dark mb-12 max-w-2xl mx-auto"
           >
-            A rural renaissance initiative by Atria Group
+            A rural renaissance by Atria Group.
           </motion.p>
 
           <motion.div
@@ -138,7 +133,7 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
               className="bg-primary-green text-white px-8 py-4 rounded-full font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl transition-shadow"
             >
-              Discover the Vision
+              Our Vision
               <ArrowRight size={20} />
             </motion.a>
 
@@ -146,9 +141,9 @@ export default function Hero() {
               href="#partners"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-primary-blue px-8 py-4 rounded-full font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl transition-shadow border-2 border-primary-blue"
+              className="bg-white text-primary-green px-8 py-4 rounded-full font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl transition-shadow border-2 border-primary-green"
             >
-              Partner With Us
+              Join Us
               <Play size={20} />
             </motion.a>
           </motion.div>

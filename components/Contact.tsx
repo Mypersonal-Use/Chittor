@@ -102,12 +102,19 @@ export default function Contact() {
                   <Mail className="text-white" size={24} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-slate-dark">Email</h3>
+                  <h3 className="font-semibold text-slate-dark">Contact Info</h3>
+                  <p className="text-slate-gray font-medium">Pratham</p>
                   <a
-                    href="mailto:projectchittoor@atria.edu"
-                    className="text-primary-blue hover:text-primary-green transition-colors"
+                    href="mailto:pratham.projectchittoor@atriauniversity.edu.in"
+                    className="text-primary-green hover:text-primary-blue transition-colors block"
                   >
-                    projectchittoor@atria.edu
+                    pratham.projectchittoor@atriauniversity.edu.in
+                  </a>
+                  <a
+                    href="tel:7204619514"
+                    className="text-slate-gray hover:text-primary-green transition-colors block mt-1"
+                  >
+                    +91 7204619514
                   </a>
                 </div>
               </div>
@@ -211,7 +218,7 @@ export default function Contact() {
               {submitStatus === 'error' && (
                 <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
                   <p className="font-semibold">✗ Failed to send message</p>
-                  <p className="text-sm">Please try again or contact us directly at projectchittoor@atria.edu</p>
+                  <p className="text-sm">Please try again or contact us directly at pratham.projectchittoor@atriauniversity.edu.in</p>
                 </div>
               )}
 
@@ -220,11 +227,10 @@ export default function Contact() {
                 disabled={isSubmitting}
                 whileHover={!isSubmitting ? { scale: 1.05 } : {}}
                 whileTap={!isSubmitting ? { scale: 0.95 } : {}}
-                className={`w-full px-8 py-4 rounded-full font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-shadow ${
-                  isSubmitting
+                className={`w-full px-8 py-4 rounded-full font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-shadow ${isSubmitting
                     ? 'bg-slate-400 cursor-not-allowed text-white'
                     : 'bg-primary-blue text-white'
-                }`}
+                  }`}
               >
                 {isSubmitting ? (
                   <>
